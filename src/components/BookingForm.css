@@ -1,0 +1,116 @@
+/* src/components/BookingForm.css (TRENDY & SEMI-ANIMATED) */
+
+.booking-form {
+    padding: 30px; /* Increased padding for an airy feel */
+    background-color: var(--white);
+    border-radius: 15px; /* Softer, modern corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Prominent, soft shadow */
+    
+    /* Semi-Animation: Subtle slide-up effect on load */
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+    opacity: 0; /* Start hidden */
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-title {
+    color: var(--secondary-color);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.form-subtitle {
+    color: #888;
+    font-size: 0.95rem;
+    margin-bottom: 25px; /* Increased margin */
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased spacing between fields */
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-bg); /* Darker label color */
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px; /* Increased padding for larger fields */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Slightly rounded fields */
+    font-size: 1rem;
+    color: var(--text-color);
+    box-shadow: none;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Enable smooth transitions */
+}
+
+/* Semi-Animation: Subtle input hover/focus effect */
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+    border-color: var(--primary-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 105, 189, 0.2); /* Light blue focus halo */
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+/* Button Styling with Animation */
+.form-submit-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 16px; /* Larger button */
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Enable smooth hover/active transitions */
+}
+
+/* Semi-Animation: Button hover and press effects */
+.form-submit-btn:hover {
+    background-color: #3e5a9c;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-submit-btn:active {
+    transform: translateY(0); /* Return on press */
+    box-shadow: none;
+}
+
+.contact-confirmation {
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #aaa;
+    text-align: center;
+}

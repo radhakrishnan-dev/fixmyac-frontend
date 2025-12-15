@@ -1,0 +1,81 @@
+/* src/styles/global.css */
+
+/* --- Variables --- */
+:root {
+  --primary-color: #299fe9; /* Light Sky Blue */
+  --primary-dark: #1a0a87; /* Cornflower Blue for hover and darker accents */
+  --secondary-color: #0e89ed; /* Steel Blue for contrast */
+  --dark-bg: #1f2a40; /* Very dark blue for the hero section */
+  --text-color: #333;
+  --light-bg: #f5faff; /* Very light blue background */
+  --white: #ffffff;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Base Styles --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* For link buttons */
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* --- Utility Classes --- */
+.container {
+  max-width: 1200px;
+  margin-left: auto; 
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+/* More general cleanup */
+.header + a,
+.header + a:hover {
+    text-decoration: none;
+    color: transparent; /* Makes the text invisible */
+    font-size: 0;
+}

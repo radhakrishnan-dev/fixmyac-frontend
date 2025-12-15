@@ -1,0 +1,143 @@
+/* src/pages/Home.css (COMPLETE LAYOUT STYLING - UPDATED) */
+
+/* --- General Container --- */
+/* (This container definition is also in index.css for global use) */
+.container {
+    width: 95%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 15px; 
+}
+
+/* --- 1. HERO SECTION STYLES --- */
+
+#home-section {
+    padding: 80px 0; 
+    background-color: var(--dark-bg);
+    min-height: 30vh; 
+}
+
+/* Desktop Layout: Split 60% / 40% using Flexbox */
+.hero-content-wrapper {
+    display: flex;
+    gap: 30px; 
+    align-items: stretch; 
+}
+
+/* Hero Left (Image and Text - 60% width) */
+.hero-left-content {
+    flex: 3; 
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-dark); 
+}
+
+/* Overlay and Text Container */
+.hero-text-and-cta {
+    background-color: rgba(0, 0, 0, 0.55); 
+    padding: 30px;
+    color: rgb(255, 255, 255);
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.hero-text-and-cta h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-top: 0;
+    color: var(--white);
+}
+
+.hero-text-and-cta .lead {
+    font-weight: 300;
+}
+
+.callout-feature {
+    background: rgba(252, 251, 251, 0.15); 
+    border-left: 4px solid var(--secondary-color); 
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+/* Hero Right (Booking Form - 40% width) */
+.booking-form-container {
+    flex: 2; 
+    background-color: var(--white);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light); 
+    height: auto; 
+}
+
+
+/* --- Mobile View Media Query (Screen width up to 992px) --- */
+@media (max-width: 992px) {
+    /* Collapse the two columns into a single, vertical stack */
+    .hero-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-left-content {
+        min-height: 350px; 
+    }
+
+    /* Adjust heading size for better mobile readability */
+    .hero-text-and-cta h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* --- 2. OUR SERVICES SECTION FIXES (Addressing Small Images) --- */
+
+.service-card {
+    /* Ensure the card has a defined size for the image to fill */
+    display: flex;
+    flex-direction: grid;
+}
+
+.service-image-container {
+    /* Set a fixed height for the container to give the image space */
+    height: 180px; 
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.service-image-container img {
+    /* Make the image fill its container completely */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Important: Ensures the image covers the area without distorting */
+}
+
+
+/* --- 3. WHY CHOOSE US SECTION FIXES (Addressing Left Spacing) --- */
+/* The "over space in the left" is likely caused by the grid items being too wide. 
+   We will ensure the grid max-width is controlled. */
+
+.features-grid {
+    /* Restricting the overall width of the feature grid */
+    max-width: 1200px;
+    margin: 30px auto 0 auto !important; /* Center the grid container and remove any unwanted left margin */
+    padding: 0 15px; /* Add some horizontal padding inside the container */
+}
+
+
+/* --- 4. BRANDS PAGE FIX --- */
+/* Ensures the content on the separate /brands page is centered vertically and horizontally */
+#brands-page {
+    min-height: 80vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 0;
+}

@@ -1,6 +1,23 @@
+/* src/App.css (UPDATED WITH CRITICAL HEIGHT FIX) */
+
 .App {
   text-align: center;
 }
+
+/* * CRITICAL FIX: Ensure the main content area has a definite size
+* and that the content inside it is not overflowed or hidden.
+*/
+.single-page-app {
+    /* Ensures the main area fills the space below the header */
+    min-height: calc(100vh - 60px); /* Assuming header is around 60px tall */
+    
+    /* Ensure no styles are hiding the content */
+    display: block !important; 
+    overflow: visible !important;
+    position: relative;
+    z-index: 1; /* Make sure it sits on top of the body background */
+}
+
 
 .App-logo {
   height: 40vmin;
@@ -35,4 +52,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Smooth Hover Effect for Buttons/Links */
+.btn-primary, .btn-secondary, a {
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link:hover {
+  color: var(--secondary-color); /* Highlight on hover */
+  transform: scale(1.05);
 }

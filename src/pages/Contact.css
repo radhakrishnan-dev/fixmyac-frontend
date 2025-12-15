@@ -1,0 +1,64 @@
+/* src/pages/Contact.css */
+
+.contact-layout {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+
+.contact-form-container, .contact-details-container {
+  flex: 1;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+}
+
+.contact-form-container h3, .contact-details-container h3 {
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 5px;
+}
+
+.detail-item {
+  margin-bottom: 20px;
+}
+
+.detail-item h4 {
+  color: var(--secondary-color);
+  margin-bottom: 5px;
+}
+
+.detail-item a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.detail-item a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.map-placeholder {
+  height: 200px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Reusing form styles from BookingForm.css where possible */
+/* Ensure you apply the full-width-btn class to the submit button */
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .contact-layout {
+    flex-direction: column;
+  }
+}
