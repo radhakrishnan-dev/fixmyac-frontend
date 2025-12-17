@@ -1,69 +1,44 @@
-// src/components/BookingForm.tsx (UPDATED for Email)
-import React, { useState, FormEvent } from 'react';
+// src/components/BookingForm.tsx
+import React, { useState } from 'react';
 import './BookingForm.css';
 
-interface FormState {
-    name: string;
-    whatsapp: string; // Keep variable name or change to phone
-    service: string;
-    dateTime: string;
-    issue: string;
-}
-
-const initialFormState: FormState = {
-    name: '',
-    whatsapp: '+91', 
-    service: 'AC Deep Cleaning', 
-    dateTime: '',
-    issue: '',
-};
-
-const serviceOptions = [
-    'AC Deep Cleaning',
-    'Routine AC Service & Maintenance',
-    'AC Repair & Troubleshooting',
-    'AC Gas Refilling / Leak Repair',
-    'Major Component Replacement',
-];
-
 const BookingForm: React.FC = () => {
-    const [formData, setFormData] = useState<FormState>(initialFormState);
+    const [status, setStatus] = useState<"IDLE" | "SENDING" | "SUCCESS" | "ERROR">("IDLE");
+    
+    // Replace this with YOUR Formspree Endpoint
+    const FORMSPREE_URL = "https://formspree.io/f/mojaaavn";
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
-
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setStatus("SENDING");
 
-        if (!formData.name || formData.whatsapp.length <= 3) {
-            alert("Please fill in your Name and Contact Number.");
-            return;
+        const form = e.currentTarget;
+        const data = new FormData(form);
+
+        const response = await fetch(FORMSPREE_URL, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            setStatus("SUCCESS");
+            form.reset();
+        } else {
+            setStatus("ERROR");
         }
-
-        // --- EMAIL LOGIC ---
-        const adminEmail = "fixmyaccoimbatore@gmail.com";
-        const subject = encodeURIComponent(`New AC Service Request from ${formData.name}`);
-        
-        const body = encodeURIComponent(
-`--- FIXMYAC SERVICE REQUEST ---
-Dear Admin,
-
-I would like to book an AC service slot.
-
-1. Customer Name: ${formData.name}
-2. Contact Number: ${formData.whatsapp}
-3. Service Required: ${formData.service}
-4. Preferred Date/Time: ${formData.dateTime || 'Not specified'}
-5. Additional Notes: ${formData.issue || 'No additional notes'}
-
-Please confirm the slot. Thank you!`
-        );
-
-        // This opens the user's Mail app (Outlook, Gmail app, etc.)
-        window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
     };
+
+    if (status === "SUCCESS") {
+        return (
+            <div className="confirmation-card">
+                <div className="success-icon">✅</div>
+                <h2>Booking Received!</h2>
+                <p>Thank you for choosing FixMyAc. We will contact you shortly to confirm your slot.</p>
+                <button onClick={() => setStatus("IDLE")} className="btn-primary">Book Another Slot</button>
+            </div>
+        );
+    }
 
     return (
         <form className="booking-form" onSubmit={handleSubmit}>
@@ -72,34 +47,39 @@ Please confirm the slot. Thank you!`
             
             <div className="form-group">
                 <label>Your Name</label>
-                <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+                <input type="text" name="name" placeholder="E.g., Rajesh" required />
             </div>
             
             <div className="form-group">
                 <label>Contact Number</label>
-                <input type="tel" name="whatsapp" value={formData.whatsapp} onChange={handleChange} required />
+                <input type="tel" name="phone" defaultValue="+91" required />
             </div>
 
             <div className="form-group">
                 <label>Select Service</label>
-                <select name="service" value={formData.service} onChange={handleChange}>
-                    {serviceOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                <select name="service">
+                    <option>AC Deep Cleaning</option>
+                    <option>Routine AC Service</option>
+                    <option>AC Repair</option>
+                    <option>AC Installation</option>
                 </select>
             </div>
 
             <div className="form-group">
                 <label>Preferred Date/Time</label>
-                <input type="datetime-local" name="dateTime" value={formData.dateTime} onChange={handleChange} />
+                <input type="datetime-local" name="dateTime" />
             </div>
 
             <div className="form-group">
                 <label>Notes (Model/Location)</label>
-                <textarea name="issue" rows={3} value={formData.issue} onChange={handleChange}></textarea>
+                <textarea name="message" rows={3} placeholder="Tell us more..."></textarea>
             </div>
 
-            <button type="submit" className="btn-primary form-submit-btn">
-                SEND BOOKING EMAIL
+            <button type="submit" className="btn-primary form-submit-btn" disabled={status === "SENDING"}>
+                {status === "SENDING" ? "Sending..." : "CONFIRM BOOKING"}
             </button>
+
+            {status === "ERROR" && <p style={{color: 'red', marginTop: '10px'}}>Something went wrong. Please try again.</p>}
         </form>
     );
 };
