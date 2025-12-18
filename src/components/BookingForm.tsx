@@ -1,32 +1,35 @@
-// src/components/BookingForm.tsx
 import React, { useState } from 'react';
 import './BookingForm.css';
 
 const BookingForm: React.FC = () => {
     const [status, setStatus] = useState<"IDLE" | "SENDING" | "SUCCESS" | "ERROR">("IDLE");
-    
-    // Replace this with YOUR Formspree Endpoint
-    const FORMSPREE_URL = "https://formspree.io/f/mojaaavn";
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // Helper to encode form data for Netlify
+    const encode = (data: any) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setStatus("SENDING");
 
         const form = e.currentTarget;
-        const data = new FormData(form);
+        const formData = new FormData(form);
+        const data: any = {};
+        formData.forEach((value, key) => (data[key] = value));
 
-        const response = await fetch(FORMSPREE_URL, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ "form-name": "booking", ...data })
+        })
+        .then(() => {
             setStatus("SUCCESS");
             form.reset();
-        } else {
-            setStatus("ERROR");
-        }
+        })
+        .catch(() => setStatus("ERROR"));
     };
 
     if (status === "SUCCESS") {
@@ -41,9 +44,19 @@ const BookingForm: React.FC = () => {
     }
 
     return (
-        <form className="booking-form" onSubmit={handleSubmit}>
+        /* The 'data-netlify="true"' is the magic part for Netlify */
+        <form 
+            className="booking-form" 
+            name="booking" 
+            method="POST" 
+            data-netlify="true"
+            onSubmit={handleSubmit}
+        >
+            {/* This hidden input is required for React forms on Netlify */}
+            <input type="hidden" name="form-name" value="booking" />
+
             <h2 className="form-title">Book Your Service</h2>
-            <p className="form-subtitle">Fill the details to send us an Email booking.</p>
+            <p className="form-subtitle">Submit details to book your AC technician.</p>
             
             <div className="form-group">
                 <label>Your Name</label>
@@ -76,10 +89,10 @@ const BookingForm: React.FC = () => {
             </div>
 
             <button type="submit" className="btn-primary form-submit-btn" disabled={status === "SENDING"}>
-                {status === "SENDING" ? "Sending..." : "CONFIRM BOOKING"}
+                {status === "SENDING" ? "Processing..." : "CONFIRM BOOKING"}
             </button>
 
-            {status === "ERROR" && <p style={{color: 'red', marginTop: '10px'}}>Something went wrong. Please try again.</p>}
+            {status === "ERROR" && <p className="error-msg">Error sending booking. Please check your internet.</p>}
         </form>
     );
 };
