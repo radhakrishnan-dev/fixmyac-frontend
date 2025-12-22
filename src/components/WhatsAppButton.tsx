@@ -4,7 +4,7 @@ import './WhatsAppButton.css'; // Create this CSS file next
 
 const WhatsAppButton: React.FC = () => {
   // Replace with your actual WhatsApp number including country code (no +, spaces, or dashes)
-  const whatsappNumber = '919876543210'; 
+  const whatsappNumber = '919787207758'; 
   const defaultMessage = 'Hello, I would like to book an AC repair service.';
   
   // URL format for WhatsApp API

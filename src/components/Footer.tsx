@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
                         All rights to FixMyAc &copy; 2025
                     </span>
                     <span className="developer-info">
-                        Developed by Krishzz Graphicz
+                        Powered by Krishzz Graphicz
                     </span>
                 </p>
                 

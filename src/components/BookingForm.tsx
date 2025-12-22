@@ -75,6 +75,7 @@ const BookingForm: React.FC = () => {
                     <option>Routine AC Service</option>
                     <option>AC Repair</option>
                     <option>AC Installation</option>
+                    <option>Other</option>
                 </select>
             </div>
 
