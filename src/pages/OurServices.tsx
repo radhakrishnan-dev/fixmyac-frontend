@@ -1,5 +1,4 @@
-// src/pages/OurServices.tsx (FINAL CODE WITH IMAGE RENDERING)
-
+// src/pages/OurServices.tsx
 import React from 'react';
 import Footer from '../components/Footer';
 import './OurServices.css'; 
@@ -20,10 +19,9 @@ const OurServices: React.FC = () => {
                         {mockServices.map((service: Service) => ( 
                             <div key={service.id} className="service-card">
                                 
-                                {/* 💥 CRITICAL FIX: Rendering the Image */}
                                 <div className="service-image-container">
                                     <img 
-                                        src={service.icon} // This now holds the imported image URL
+                                        src={service.icon} 
                                         alt={service.title} 
                                         className="service-image" 
                                     />
@@ -31,14 +29,18 @@ const OurServices: React.FC = () => {
                                 
                                 <h2>{service.title}</h2>
                                 <p>{service.description}</p>
-                                <div className="price-tag">{service.priceEstimate}</div>
-                                <a href="/#home-section"><button className="btn-primary service-cta">Book This Service</button></a>
+                                
+                                {/* ✂️ Price tag div removed from here */}
+                                
+                                <a href="/#home-section">
+                                    <button className="btn-primary service-cta">Book This Service</button>
+                                </a>
                             </div>
                         ))}
                     </div>
 
                     <p style={{ marginTop: '40px', fontSize: '1.1rem' }}>
-                        **Location Note:** Our primary service area is Coimbatore. For service requests outside, please call us to inquire.
+                        <strong>Location Note:</strong> Our primary service area is Coimbatore. For service requests outside, please call us to inquire.
                     </p>
                     
                 </section>

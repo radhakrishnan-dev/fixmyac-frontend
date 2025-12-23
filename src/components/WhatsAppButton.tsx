@@ -1,26 +1,21 @@
-// src/components/WhatsAppButton.tsx
 import React from 'react';
-import './WhatsAppButton.css'; // Create this CSS file next
+import './WhatsAppButton.css';
 
 const WhatsAppButton: React.FC = () => {
-  // Replace with your actual WhatsApp number including country code (no +, spaces, or dashes)
-  const whatsappNumber = '919787207758'; 
-  const defaultMessage = 'Hello, I would like to book an AC repair service.';
-  
-  // URL format for WhatsApp API
-  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(defaultMessage)}`;
+  const phoneNumber = "919361665451"; // Your number
+  const message = encodeURIComponent("Hello FixMyAc, I would like to inquire about AC service.");
 
   return (
     <a 
-      href={whatsappLink} 
-      target="_blank" 
-      rel="noopener noreferrer" 
+      href={`https://wa.me/${phoneNumber}?text=${message}`}
       className="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
     >
-      {/* Simple circle icon */}
-      <svg viewBox="0 0 24 24" width="30" height="30" fill="white">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.32 14.88c-.14.24-.31.32-.51.31-.22 0-.48-.09-.77-.18s-.68-.23-1.3-.47c-.6-.23-1.12-.5-1.66-.82-.55-.32-1.05-.72-1.42-1.19-.36-.47-.59-1.02-.69-1.63-.09-.61.02-1.18.27-1.74.25-.56.62-1.01 1.09-1.38.47-.37 1.05-.62 1.74-.75.69-.14 1.34-.14 1.95.03.61.17 1.15.52 1.63.99.48.47.85 1.05 1.09 1.74.25.69.29 1.36.1 2.01-.19.65-.62 1.16-1.28 1.54-.66.38-1.42.59-2.3.62z"/>
+      {/* Modern High-Res WhatsApp SVG */}
+      <svg viewBox="0 0 32 32" className="whatsapp-icon-svg">
+        <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.733 5.476 2.017 7.781l-2.017 7.219 7.394-1.941c2.253 1.229 4.839 1.941 7.606 1.941 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.333c-2.408 0-4.664-0.639-6.621-1.751l-0.475-0.271-4.394 1.153 1.173-4.197-0.297-0.473c-1.228-1.956-1.949-4.281-1.949-6.795 0-7.361 5.972-13.333 13.333-13.333s13.333 5.972 13.333 13.333-5.972 13.333-13.333 13.333zM22.515 19.34c-0.357-0.179-2.112-1.043-2.441-1.163s-0.569-0.179-0.807 0.179c-0.239 0.357-0.925 1.163-1.133 1.403s-0.417 0.269-0.775 0.091c-0.357-0.179-1.511-0.557-2.879-1.777-1.064-0.949-1.783-2.121-1.992-2.479s-0.023-0.551 0.156-0.729c0.161-0.161 0.357-0.417 0.536-0.627s0.239-0.357 0.357-0.597 0.060-0.447-0.030-0.627c-0.089-0.179-0.807-1.945-1.105-2.662-0.291-0.7-0.589-0.605-0.807-0.617s-0.447-0.011-0.687-0.011-0.627 0.089-0.955 0.447c-0.328 0.357-1.251 1.223-1.251 2.981s1.281 3.457 1.459 3.696c0.179 0.239 2.521 3.849 6.107 5.397 0.852 0.368 1.517 0.588 2.035 0.752 0.856 0.272 1.635 0.233 2.251 0.141 0.687-0.103 2.112-0.863 2.411-1.696s0.299-1.547 0.211-1.696c-0.091-0.149-0.328-0.239-0.686-0.419z" fill="currentColor"/>
       </svg>
     </a>
   );
