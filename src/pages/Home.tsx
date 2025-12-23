@@ -83,7 +83,6 @@ const Home: React.FC = () => {
 
                                 <h2 style={{ fontSize: '1.4rem', margin: '10px 0' }}>{service.title}</h2>
                                 <p style={{ fontSize: '0.95rem', color: '#666', minHeight: '50px' }}>{service.description.split('. ')[0]}.</p> 
-                                <div className="price-tag" style={{ fontWeight: 'bold', color: 'var(--secondary-color)', margin: '15px 0' }}>{service.priceEstimate}</div>
                                 <a href="#contact-form"><button className="btn-primary service-cta">Book This Service</button></a>
                             </div>
                         ))}
