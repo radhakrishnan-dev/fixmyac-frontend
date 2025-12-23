@@ -2,7 +2,7 @@ import React from 'react';
 import './WhatsAppButton.css';
 
 const WhatsAppButton: React.FC = () => {
-  const phoneNumber = "919361665451"; // Your number
+  const phoneNumber = "919787207758"; // Your number
   const message = encodeURIComponent("Hello FixMyAc, I would like to inquire about AC service.");
 
   return (
