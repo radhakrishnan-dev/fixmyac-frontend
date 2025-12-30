@@ -29,42 +29,63 @@ const Home: React.FC = () => {
     return (
         <> 
             {/* 1. HOME/HERO SECTION (ID: home-section) */}
-            <section 
-                id="home-section" 
-            >
-                <div className="container"> 
-                    <div className="hero-content-wrapper">
-                        <div 
-                            className="hero-left-content"
-                            style={{ 
-                                backgroundImage: `url(${heroBackground})`,
-                            }}
-                        > 
-                            <div className="hero-text-and-cta">
-                                <h1>Your Trusted Partner for Expert AC Service & Repair in Coimbatore</h1>
-                                <p className="lead">
-                                    Keep your cool all year long. FixMyAc provides **reliable, fast, and high-quality** air conditioner service, repair, and installation for all major brands.
-                                </p>
-                                <ul style={{ listStyle: 'none', padding: '0', marginTop: '20px' }}>
-                                    <li style={{ marginBottom: '10px', color: 'white' }}>✅ Multi-Brand Expertise (Split, Window, Cassette)</li>
-                                    <li style={{ marginBottom: '10px', color: 'white' }}>✅ Trained, Verified, and Experienced Professionals</li>
-                                </ul>
-
-                                <div className="callout-feature">
-                                    <h3 style={{ margin: '0', color: 'var(--secondary-color)' }}>Service Starts from Just ₹ 599!</h3>
-                                    <p style={{ margin: '5px 0 0 0', color: 'white' }}>Affordable and professional care is just a click away.</p>
-                                    <a href="#contact-form"><button className="btn-primary" style={{ marginTop: '10px' }}>Book Your AC Service Today!</button></a>
-                                </div>
-                            </div>
-                        </div>
+<section id="home-section">
+    <div className="container"> 
+        <div className="hero-content-wrapper">
+            <div 
+                className="hero-left-content"
+                style={{ 
+                    backgroundImage: `url(${heroBackground})`,
+                }}
+            > 
+                <div className="hero-text-and-cta">
+                    <h1>Your Trusted Partner for Expert AC Service & Repair in Coimbatore</h1>
+                    <p className="lead">
+                        Keep your cool all year long. FixMyAc provides **reliable, fast, and high-quality** air conditioner service, repair, and installation.
+                    </p>
                     
-                        <div className="booking-form-container" id="contact-form"> 
-                            <BookingForm />
-                        </div>
+                    <ul style={{ listStyle: 'none', padding: '0', marginTop: '20px' }}>
+                        <li style={{ marginBottom: '10px', color: 'white' }}>✅ Multi-Brand Expertise</li>
+                        <li style={{ marginBottom: '10px', color: 'white' }}>✅ Trained & Experienced Professionals</li>
+                    </ul>
 
+                    {/* --- UPDATED CTA BOX --- */}
+                    <div className="callout-feature" style={{ background: 'rgba(0,0,0,0.6)', padding: '20px', borderRadius: '15px' }}>
+                        <h3 style={{ margin: '0 0 15px 0', color: 'var(--secondary-color)' }}>Service Starts from Just ₹ 599!</h3>
+                        
+                        <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                            {/* Call Button */}
+                            <a href={`tel:${phoneNumber}`} style={{ textDecoration: 'none', flex: '1', minWidth: '200px' }}>
+                                <button className="btn-primary" style={{ 
+                                    backgroundColor: '#25d366', // Green for Call/WhatsApp feel
+                                    width: '100%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    gap: '10px',
+                                    fontSize: '1.1rem'
+                                }}>
+                                    <span>📞</span> CALL: {phoneNumber}
+                                </button>
+                            </a>
+
+                            {/* Book Button */}
+                            <a href="#contact-form" style={{ textDecoration: 'none', flex: '1', minWidth: '200px' }}>
+                                <button className="btn-primary" style={{ width: '100%', fontSize: '1.1rem' }}>
+                                    📅 BOOK ONLINE
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        
+            <div className="booking-form-container" id="contact-form"> 
+                <BookingForm />
+            </div>
+        </div>
+    </div>
+</section>
 
             {/* 2. OUR SERVICES SECTION (ID: services-section) */}
             <section id="services-section" className="services-page" style={{ padding: '60px 0', backgroundColor: '#f9f9f9', textAlign: 'center' }}>
